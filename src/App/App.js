@@ -39,14 +39,34 @@ function App () {
     }
   })
 
+  const handleBuyProduct = (id) => () => {
+    const _inventoryItems = { ...inventoryItems }
+    const key = Object.keys(_inventoryItems).filter(key => _inventoryItems[key].id === id)
+    const item = { ..._inventoryItems[key] }
+
+    _inventoryItems[key].quantity = _inventoryItems[key].quantity - 1
+    console.log(_inventoryItems)
+
+    setCartItems({
+      ...cartItems,
+      [id]: item
+    })
+    setInventoryItems({
+      ..._inventoryItems
+    })
+  }
+
   return (
-    <div>
-      <Cart cartItems={cartItems} />
+    <>
+      <Cart
+        cartItems={cartItems}
+      />
       <Inventory
         inventoryItems={inventoryItems}
         cartItems={cartItems}
+        handleBuyProduct={handleBuyProduct}
       />
-    </div>
+    </>
   )
 }
 

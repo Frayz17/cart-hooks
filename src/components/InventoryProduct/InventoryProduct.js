@@ -20,7 +20,7 @@ function InventoryProduct ({ product, cartItems, handleBuyProduct }) {
     <p>
       <span>{title} - </span>
       <span>{price}$ </span>
-      <button onClick={handleBuyProduct(id)}>buy</button>
+      <button disabled={!quantity} onClick={handleBuyProduct(id)}>In Cart</button>
       <span>
         (in stock: {quantity} {amountSelected()})
       </span>
